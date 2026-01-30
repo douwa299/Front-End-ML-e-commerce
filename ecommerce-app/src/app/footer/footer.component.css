@@ -1,17 +1,43 @@
 @import url('https://fonts.googleapis.com/css2?family=Poiret+One&display=swap');
 
-/* Footer styles */
+/* Stick to bottom - FIXED VERSION */
+html, body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh; /* Use vh instead of % for better consistency */
+}
+
+app-root {
+  flex: 1 0 auto; /* Grow but don't shrink below content */
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+/* Make main content area grow */
+main, router-outlet + * {
+  flex: 1 0 auto;
+}
+
+/* Footer styles - FIXED */
 .footer {
   background-color: rgba(69, 65, 65, 0.929);
   color: #D3D3D3;
   font-family: "Poiret One", sans-serif;
-
-  margin-top: auto;   /* push footer to bottom */
-  width: 100%;        /* full width */
+  width: 100%;
+  flex-shrink: 0; /* Prevent footer from shrinking */
+  margin-top: auto; /* Push to bottom */
+  /* REMOVE position: absolute and bottom: 0 */
 }
 
 .footer-content {
-  max-width: 100%;    /* don't exceed screen */
+  max-width: 100%;
   margin: 0 auto;
   text-align: center;
   padding: 30px;
@@ -45,7 +71,6 @@
 .copyright {
   font-size: 20px !important;
   opacity: 0.8 !important;
-
 }
 
 /* Mobile */
@@ -55,7 +80,7 @@
     gap: 10px !important;
   }
 
-  .footer {
+  .footer-content {
     padding: 25px 15px !important;
   }
 }

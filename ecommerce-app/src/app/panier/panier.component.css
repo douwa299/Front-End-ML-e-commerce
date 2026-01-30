@@ -1,0 +1,248 @@
+@import url('https://fonts.googleapis.com/css2?family=Poiret+One&display=swap');
+
+.cart-section {
+  display: block;
+  margin: auto;
+  width: 80vw;
+  margin-top: 40px;
+  margin-bottom: 100px;
+  font-family: "Poiret One", sans-serif;
+}
+
+.cart-container {
+  width: 100%;
+}
+
+.cart-title {
+  font-size: 40px;
+  font-weight: 300;
+  padding-bottom: 30px;
+  border-bottom: 2px solid rgba(0, 0, 0, 0.08);
+  margin-bottom: 40px;
+}
+
+/* Cart Items Container */
+.cart-items-container {
+  margin-bottom: 50px;
+}
+
+.cart-item {
+  display: flex;
+  margin-bottom: 40px;
+  padding-bottom: 40px;
+  border-bottom: 2px solid rgba(0, 0, 0, 0.08);
+}
+
+.cart-item:last-child {
+  border-bottom: none;
+  margin-bottom: 0;
+  padding-bottom: 0;
+}
+
+.cart-item-image {
+  width: 300px;
+  height: 400px;
+  margin-right: 40px;
+}
+
+.cart-item-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 18px;
+  box-shadow:
+    0 20px 40px rgba(0, 0, 0, 0.15),
+    0 8px 16px rgba(0, 0, 0, 0.08);
+  transform: translateY(-10px);
+  transition:
+    transform 0.4s ease,
+    box-shadow 0.4s ease;
+}
+
+.cart-item-image img:hover {
+  transform: translateY(-18px);
+  box-shadow:
+    0 30px 60px rgba(0, 0, 0, 0.18),
+    0 12px 24px rgba(0, 0, 0, 0.1);
+}
+
+.cart-item-details {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.cart-item-info {
+  margin-top: 20px;
+}
+
+.cart-item-name {
+  font-size: 40px;
+  font-weight: 300;
+  margin-bottom: 15px;
+}
+
+.cart-item-price {
+  font-size: 25px;
+  font-weight: 100;
+  margin-bottom: 20px;
+}
+
+.cart-divider {
+  border-top: 1px solid rgba(0, 0, 0, 0.08);
+  width: 80%;
+  margin: 20px 0;
+}
+
+.cart-item-specs {
+  margin-top: 20px;
+}
+
+.cart-spec {
+  font-size: 20px;
+  font-weight: 200;
+  margin: 8px 0;
+}
+
+/* Remove Button */
+.cart-item-actions {
+  margin-top: auto;
+  padding-bottom: 20px;
+}
+
+.remove-btn {
+  background: none;
+  border: none;
+  color: #333;
+  font-family: "Poiret One", sans-serif;
+  font-size: 20px;
+  font-weight: 200;
+  cursor: pointer;
+  padding: 10px 0;
+  transition: color 0.3s ease;
+}
+
+.remove-btn:hover {
+  text-decoration: underline;
+  color: #000;
+}
+
+/* Cart Summary */
+.cart-summary {
+  background-color: rgba(0, 0, 0, 0.02);
+  border-radius: 18px;
+  padding: 40px;
+  margin: 60px 0;
+  box-shadow:
+    0 10px 20px rgba(0, 0, 0, 0.05),
+    0 4px 8px rgba(0, 0, 0, 0.03);
+}
+
+.summary-details {
+  margin-bottom: 40px;
+}
+
+.summary-row {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 20px;
+  font-size: 20px;
+}
+
+.summary-label {
+  font-weight: 200;
+}
+
+.summary-value {
+  font-weight: 300;
+}
+
+.summary-row.total {
+  font-size: 25px;
+  margin-top: 30px;
+  padding-top: 20px;
+  border-top: 2px solid rgba(0, 0, 0, 0.08);
+}
+
+.summary-divider {
+  border-top: 1px solid rgba(0, 0, 0, 0.05);
+  margin: 25px 0;
+}
+
+/* Checkout Button */
+.checkout-btn {
+  width: 100%;
+  padding: 20px;
+  background-color: #333;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-family: "Poiret One", sans-serif;
+  font-size: 24px;
+  font-weight: 300;
+  cursor: pointer;
+  letter-spacing: 1px;
+  transition: background-color 0.3s ease;
+}
+
+.checkout-btn:hover {
+  background-color: #555;
+}
+
+/* Continue Shopping */
+.continue-shopping {
+  text-align: center;
+  margin-top: 50px;
+  padding-top: 30px;
+  border-top: 2px solid rgba(0, 0, 0, 0.08);
+}
+
+.continue-link {
+  color: #333;
+  text-decoration: none;
+  font-size: 22px;
+  font-weight: 300;
+  transition: color 0.3s ease;
+}
+
+.continue-link:hover {
+  color: #555;
+  text-decoration: underline;
+}
+
+/* Responsive Design */
+@media (max-width: 1024px) {
+  .cart-section {
+    width: 90vw;
+  }
+
+  .cart-item {
+    flex-direction: column;
+  }
+
+  .cart-item-image {
+    width: 100%;
+    height: 500px;
+    margin-right: 0;
+    margin-bottom: 30px;
+  }
+}
+
+@media (max-width: 768px) {
+  .cart-section {
+    width: 95vw;
+  }
+
+  .cart-item-image {
+    height: 400px;
+  }
+
+  .cart-item-name {
+    font-size: 32px;
+  }
+
+  .cart-summary {
+    padding: 30px 20px;
+  }
+}

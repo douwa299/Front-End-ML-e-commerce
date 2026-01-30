@@ -6,13 +6,18 @@ import { ArticleComponent } from './article/article.component';
 import { BoutiqueComponent } from './boutique/boutique.component';
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
+import { PanierComponent } from './panier/panier.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
   { path: 'products', component: BoutiqueComponent },
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
-  { path: '**', redirectTo: '' }
+  { path: 'article', component: ArticleComponent },
+  { path: 'panier', component: PanierComponent },
+    { path: '**', redirectTo: '' }
+
+
 ];
 
 @NgModule({
