@@ -1,0 +1,42 @@
+<section class="shop">
+  <!-- En-tête avec titre et tri -->
+  <div class="shop-header">
+    <div class="container-header">
+      <h1>BOUTIQUE</h1>
+      <div class="sort-controls">
+        <label for="sort">Trier par</label>
+        <select id="sort" [(ngModel)]="sortBy" (change)="onSortChange()" class="sort-select">
+          <option value="newest">Nouveautés</option>
+          <option value="priceLow">Prix croissant</option>
+          <option value="priceHigh">Prix décroissant</option>
+          <option value="alphabetical">Alphabétique</option>
+        </select>
+      </div>
+    </div>
+  </div>
+
+  <!-- Grille de produits -->
+  <div class="container">
+    <div *ngIf="filteredProducts.length > 0; else noProducts" class="products-grid">
+      <div class="product-card" *ngFor="let product of filteredProducts" [routerLink]="['/article', product.id]">
+        <div class="product-image">
+          <img [src]="product.image" [alt]="product.name" />
+          <div class="overlay">
+            <button class="add-btn" (click)="$event.stopPropagation()">Ajouter au panier</button>
+          </div>
+        </div>
+        <div class="product-info">
+          <h3>{{ product.name }}</h3>
+          <p class="category">{{ product.category }}</p>
+          <p class="price">{{ product.price | currency:'EUR':'symbol':'1.2-2' }}</p>
+        </div>
+      </div>
+    </div>
+
+    <ng-template #noProducts>
+      <div class="no-products">
+        <p>Aucun produit disponible pour le moment</p>
+      </div>
+    </ng-template>
+  </div>
+</section>
