@@ -29,6 +29,7 @@
 .subtitle {
 	color: #6b6b6b;
 	margin-bottom: 30px;
+	font-size: 0.95rem;
 }
 
 .auth-form {
@@ -40,28 +41,31 @@
 .auth-form label {
 	font-size: 0.9rem;
 	color: #2c2c2c;
+	font-weight: 500;
+	margin-bottom: -8px;
 }
 
 .auth-form input[type="text"],
 .auth-form input[type="email"],
-.auth-form input[type="password"] {
+.auth-form input[type="password"],
+.auth-form input[type="date"],
+.auth-form select {
 	padding: 12px 14px;
 	border: 1px solid #d7d2cc;
 	background: #faf9f7;
 	font-size: 0.95rem;
 	outline: none;
+	font-family: "Poiret One", sans-serif;
+	transition: border-color 0.2s ease;
 }
 
-.auth-form input:focus {
+.auth-form input:focus,
+.auth-form select:focus {
 	border-color: #bfa37c;
 }
 
-.checkbox {
-	display: flex;
-	align-items: center;
-	gap: 8px;
-	font-size: 0.85rem;
-	color: #2c2c2c;
+.auth-form select {
+	cursor: pointer;
 }
 
 .primary-btn {
@@ -73,25 +77,58 @@
 	letter-spacing: 1px;
 	text-transform: uppercase;
 	cursor: pointer;
+	font-family: "Poiret One", sans-serif;
+	font-size: 0.95rem;
+	transition: background 0.2s ease;
 }
 
 .primary-btn:hover {
 	background: #1f1f1f;
 }
 
+.primary-btn:disabled {
+	background: #7a7a7a;
+	cursor: not-allowed;
+}
+
+.error-message {
+	color: #d32f2f;
+	font-size: 0.9rem;
+	margin-top: 10px;
+	text-align: center;
+}
+
+.success-message {
+	color: #388e3c;
+	font-size: 0.9rem;
+	margin-top: 10px;
+	text-align: center;
+}
+
 .switch {
 	text-align: center;
 	font-size: 0.9rem;
 	margin-top: 20px;
+	color: #6b6b6b;
 }
 
 .switch a {
 	color: #bfa37c;
 	text-decoration: none;
+	font-weight: 500;
+	transition: color 0.2s ease;
+}
+
+.switch a:hover {
+	color: #9a7f5e;
 }
 
 @media (max-width: 480px) {
 	.auth-card {
 		padding: 30px 20px;
+	}
+	
+	.auth-card h1 {
+		font-size: 1.6rem;
 	}
 }

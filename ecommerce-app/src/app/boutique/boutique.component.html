@@ -1,15 +1,13 @@
 <section class="shop">
-  <!-- En-tête avec titre et tri -->
+  <!-- En-tête avec titre et filtrage -->
   <div class="shop-header">
     <div class="container-header">
       <h1>BOUTIQUE</h1>
       <div class="sort-controls">
-        <label for="sort">Trier par</label>
-        <select id="sort" [(ngModel)]="sortBy" (change)="onSortChange()" class="sort-select">
-          <option value="newest">Nouveautés</option>
-          <option value="priceLow">Prix croissant</option>
-          <option value="priceHigh">Prix décroissant</option>
-          <option value="alphabetical">Alphabétique</option>
+        <label for="category">Filtrer par catégorie</label>
+        <select id="category" [(ngModel)]="selectedCategory" (change)="onCategoryChange()" class="sort-select">
+          <option value="all">Toutes les catégories</option>
+          <option *ngFor="let cat of categories" [value]="cat">{{ cat }}</option>
         </select>
       </div>
     </div>
@@ -17,8 +15,16 @@
 
   <!-- Grille de produits -->
   <div class="container">
-    <div *ngIf="filteredProducts.length > 0; else noProducts" class="products-grid">
-      <div class="product-card" *ngFor="let product of filteredProducts" [routerLink]="['/article', product.id]">
+    <div *ngIf="isLoading" class="no-products">
+      <p>Chargement des produits...</p>
+    </div>
+
+    <div *ngIf="!isLoading && errorMessage" class="no-products">
+      <p>{{ errorMessage }}</p>
+    </div>
+
+    <div *ngIf="!isLoading && !errorMessage && filteredProducts.length > 0; else noProducts" class="products-grid">
+      <div class="product-card" *ngFor="let product of filteredProducts" [routerLink]="['/article', product.id]" (click)="selectProduct(product)">
         <div class="product-image">
           <img [src]="product.image" [alt]="product.name" />
           <div class="overlay">
@@ -34,7 +40,7 @@
     </div>
 
     <ng-template #noProducts>
-      <div class="no-products">
+      <div class="no-products" *ngIf="!isLoading && !errorMessage">
         <p>Aucun produit disponible pour le moment</p>
       </div>
     </ng-template>

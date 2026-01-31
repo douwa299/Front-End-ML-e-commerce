@@ -3,22 +3,36 @@
 		<h1>Inscription</h1>
 		<p class="subtitle">Rejoignez Shop♡Ease en quelques clics</p>
 
-		<form class="auth-form">
+		<form class="auth-form" (ngSubmit)="onSubmit()">
 			<label for="fullName">Nom complet</label>
-			<input id="fullName" type="text" placeholder="Votre nom" />
+			<input id="fullName" name="fullName" type="text" [(ngModel)]="username" placeholder="Votre nom" required />
 
 			<label for="email">Email</label>
-			<input id="email" type="email" placeholder="Votre email" />
+			<input id="email" name="email" type="email" [(ngModel)]="email" placeholder="Votre email" required />
 
 			<label for="password">Mot de passe</label>
-			<input id="password" type="password" placeholder="••••••••" />
+			<input id="password" name="password" type="password" [(ngModel)]="password" placeholder="••••••••" required />
 
 			<label for="confirm">Confirmer le mot de passe</label>
-			<input id="confirm" type="password" placeholder="••••••••" />
+			<input id="confirm" name="confirm" type="password" [(ngModel)]="confirm" placeholder="••••••••" required />
 
+			<label for="sex">Sexe</label>
+			<select id="sex" name="sex" [(ngModel)]="sex">
+				<option value="Unknown">Non précisé</option>
+				<option value="Female">Femme</option>
+				<option value="Male">Homme</option>
+			</select>
 
-			<button type="submit" class="primary-btn">Créer un compte</button>
+			<label for="birthDate">Date de naissance</label>
+			<input id="birthDate" name="birthDate" type="date" [(ngModel)]="birthDate" />
+
+			<button type="submit" class="primary-btn" [disabled]="isLoading">
+				{{ isLoading ? 'Création...' : 'Créer un compte' }}
+			</button>
 		</form>
+
+		<p class="error-message" *ngIf="errorMessage">{{ errorMessage }}</p>
+		<p class="success-message" *ngIf="successMessage">{{ successMessage }}</p>
 
 		<p class="switch">Déjà un compte ? <a routerLink="/login">Se connecter</a></p>
 	</div>

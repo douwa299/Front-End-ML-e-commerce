@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ApiService, BoutiqueItem } from '../services/api.service';
 
 interface Product {
   id: number;
@@ -17,38 +18,66 @@ interface Product {
 export class BoutiqueComponent implements OnInit {
   products: Product[] = [];
   filteredProducts: Product[] = [];
-  sortBy: string = 'newest';
+  categories: string[] = [];
+  selectedCategory: string = 'all';
+  isLoading = false;
+  errorMessage = '';
+
+  constructor(private api: ApiService) {}
 
   ngOnInit() {
-    // TODO: Appel API au backend FastAPI
-    // this.fetchProducts();
+    this.loadCategories();
+    this.fetchProducts();
   }
 
-  // Cette méthode sera appelée avec les données du backend
-  setProducts(data: Product[]) {
-    this.products = data;
-    this.filteredProducts = [...this.products];
-    this.sortProducts();
+  loadCategories() {
+    this.api.getCategories().subscribe({
+      next: (cats: string[]) => {
+        this.categories = cats;
+      },
+      error: () => {
+        console.error('Impossible de charger les catégories');
+      }
+    });
   }
 
-  sortProducts() {
-    switch (this.sortBy) {
-      case 'newest':
-        this.filteredProducts = [...this.products];
-        break;
-      case 'priceLow':
-        this.filteredProducts = [...this.products].sort((a, b) => a.price - b.price);
-        break;
-      case 'priceHigh':
-        this.filteredProducts = [...this.products].sort((a, b) => b.price - a.price);
-        break;
-      case 'alphabetical':
-        this.filteredProducts = [...this.products].sort((a, b) => a.name.localeCompare(b.name));
-        break;
+  fetchProducts() {
+    this.isLoading = true;
+    this.errorMessage = '';
+    this.api.getBoutique({ limit: 100 }).subscribe({
+      next: (items: BoutiqueItem[]) => {
+        this.products = items.map((item) => ({
+          id: item.article_id,
+          name: item.prod_name,
+          price: item.price,
+          image: this.api.buildImageUrl(item.image_path),
+          category: item.product_group_name
+        }));
+        this.filterByCategory();
+        this.isLoading = false;
+      },
+      error: () => {
+        this.isLoading = false;
+        this.errorMessage = 'Impossible de charger les produits. Vérifiez que le backend est lancé.';
+      }
+    });
+  }
+
+  filterByCategory() {
+    if (this.selectedCategory === 'all') {
+      this.filteredProducts = [...this.products];
+    } else {
+      this.filteredProducts = this.products.filter(
+        (p) => p.category === this.selectedCategory
+      );
     }
   }
 
-  onSortChange() {
-    this.sortProducts();
+  onCategoryChange() {
+    this.filterByCategory();
+  }
+
+  selectProduct(product: Product) {
+    localStorage.setItem('selectedProduct', JSON.stringify(product));
   }
 }
