@@ -18,14 +18,14 @@ import { PanierComponent } from './panier/panier.component';
 @NgModule({
   declarations: [
     AppComponent,
-    ArticleComponent,
+    // ArticleComponent,
     HeaderComponent,
     FooterComponent,
     HomeComponent,
     LoginComponent,
     RegisterComponent,
     BoutiqueComponent,
-    PanierComponent
+    // PanierComponent
   ],
   imports: [
     BrowserModule,

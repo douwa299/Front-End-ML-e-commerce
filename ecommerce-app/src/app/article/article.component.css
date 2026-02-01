@@ -123,38 +123,76 @@
 }
 
 
-.prod{
+/* Add these styles to your existing CSS */
+.prod {
+  position: relative;
+  cursor: pointer;
+  transition: all 0.3s ease;
   height: 300px;
-  width:300px;
+  width: 300px;
   margin-bottom: 80px;
 }
 
-.prod img{
-  height: 250px;
-  width:300px;
-  outline: 2px solid rgba(0, 0, 0, 0.08);
+.prod::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(to bottom, transparent 0%, rgba(0,0,0,0.03) 100%);
+  border-radius: 4px;
+  transition: all 0.3s ease;
+  z-index: 1;
+  pointer-events: none;
 }
 
+.prod:hover::before {
+  background: linear-gradient(to bottom, transparent 0%, rgba(0,0,0,0.05) 100%);
+}
 
-.prod div{
+.prod img {
+  height: 250px;
+  width: 300px;
+  outline: 2px solid rgba(0, 0, 0, 0.08);
+  transition: all 0.3s ease;
+  position: relative;
+  z-index: 0;
+}
+
+.prod:hover img {
+  outline: 2px solid rgba(0, 0, 0, 0.15);
+}
+
+.prod div {
   position: relative;
   height: 50px;
   display: flex;
   flex-direction: column;
-    justify-content: space-between;
-
+  justify-content: space-between;
+  z-index: 1;
 }
+
 .prod div p {
   padding: 5px;
-
+  transition: all 0.3s ease;
 }
+
+.prod:hover .prod-name {
+  transform: translateX(4px);
+}
+
+.prod:hover .price-tag {
+  transform: translateX(4px);
+  color: #333;
+}
+
 .prod div .prod-name {
-       font-size: 30px;
-
+  font-size: 30px;
 }
-.prod div .price-tag{
-       font-size: 20px;
 
+.prod div .price-tag {
+  font-size: 20px;
 }
 .similar-articles{
   position: relative;

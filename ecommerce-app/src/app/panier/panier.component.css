@@ -246,3 +246,101 @@
     padding: 30px 20px;
   }
 }
+/* Empty Cart Styling */
+.empty-cart-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 60vh;
+  text-align: center;
+  padding: 40px 20px;
+}
+
+.empty-cart-message {
+  font-size: 32px;
+  font-weight: 300;
+  color: #555;
+  margin-bottom: 30px;
+  position: relative;
+  padding-bottom: 20px;
+}
+
+.empty-cart-message::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100px;
+  height: 1px;
+  background-color: rgba(0, 0, 0, 0.1);
+}
+
+.empty-cart-emoji {
+  display: inline-block;
+  animation: gentleBounce 2s ease-in-out infinite;
+  margin-left: 10px;
+}
+
+@keyframes gentleBounce {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-5px);
+  }
+}
+
+.empty-cart-illustration {
+  font-size: 80px;
+  margin-bottom: 30px;
+  opacity: 0.7;
+}
+
+.empty-cart-actions {
+  margin-top: 40px;
+}
+
+.continue-shopping-btn {
+  background: none;
+  border: 1px solid rgba(0, 0, 0, 0.15);
+  color: #333;
+  padding: 12px 40px;
+  font-family: "Poiret One", sans-serif;
+  font-size: 20px;
+  font-weight: 300;
+  cursor: pointer;
+  border-radius: 8px;
+  transition: all 0.3s ease;
+  letter-spacing: 0.5px;
+}
+
+.continue-shopping-btn:hover {
+  background-color: rgba(0, 0, 0, 0.02);
+  border-color: rgba(0, 0, 0, 0.25);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+}
+
+/* Or if you prefer a more minimalist approach: */
+
+/* Minimal version */
+.empty-cart-simple {
+  text-align: center;
+  padding: 100px 20px;
+  font-size: 28px;
+  color: #666;
+  font-weight: 300;
+}
+
+.empty-cart-simple p {
+  margin-bottom: 30px;
+}
+
+/* Add this to your existing .continue-link class for reuse */
+.empty-cart .continue-link {
+  font-size: 20px;
+  padding: 10px 30px;
+  display: inline-block;
+}

@@ -46,17 +46,17 @@ export class ApiService {
     if (options?.product_group) params = params.set('product_group', options.product_group);
     if (options?.max_price !== undefined) params = params.set('max_price', String(options.max_price));
     if (options?.limit !== undefined) params = params.set('limit', String(options.limit));
-    return this.http.get<BoutiqueItem[]>(`${this.baseUrl}/boutique`, { params });
+    return this.http.get<BoutiqueItem[]>(`${this.backendUrl}/boutique`, { params });
   }
 
   getCategories(): Observable<string[]> {
-    return this.http.get<string[]>(`${this.baseUrl}/categories`);
+    return this.http.get<string[]>(`${this.backendUrl}/categories`);
   }
 
   getRecommendations(articleId: number, topK = 5): Observable<{ source_item: number; recommendations: BoutiqueItem[] }> {
     const params = new HttpParams().set('top_k', String(topK));
     return this.http.get<{ source_item: number; recommendations: BoutiqueItem[] }>(
-      `${this.baseUrl}/recommend/${articleId}`,
+      `${this.backendUrl}/recommend/${articleId}`,
       { params }
     );
   }
@@ -64,25 +64,25 @@ export class ApiService {
   login(username: string, password: string): Observable<TokenResponse> {
     const body = new HttpParams().set('username', username).set('password', password);
     const headers = new HttpHeaders({ 'Content-Type': 'application/x-www-form-urlencoded' });
-    return this.http.post<TokenResponse>(`${this.baseUrl}/login`, body.toString(), { headers });
+    return this.http.post<TokenResponse>(`${this.backendUrl}/login`, body.toString(), { headers });
   }
 
   register(payload: RegisterPayload): Observable<{ msg: string }> {
-    return this.http.post<{ msg: string }>(`${this.baseUrl}/register`, payload);
+    return this.http.post<{ msg: string }>(`${this.backendUrl}/register`, payload);
   }
 
   getCart(token: string): Observable<BoutiqueItem[]> {
     const headers = new HttpHeaders({ Authorization: `Bearer ${token}` });
-    return this.http.get<BoutiqueItem[]>(`${this.baseUrl}/cart`, { headers });
+    return this.http.get<BoutiqueItem[]>(`${this.backendUrl}/cart`, { headers });
   }
 
   addToCart(articleId: number, token: string): Observable<{ msg: string }> {
     const headers = new HttpHeaders({ Authorization: `Bearer ${token}` });
-    return this.http.post<{ msg: string }>(`${this.baseUrl}/cart/add/${articleId}`, {}, { headers });
+    return this.http.post<{ msg: string }>(`${this.backendUrl}/cart/add/${articleId}`, {}, { headers });
   }
 
   removeFromCart(articleId: number, token: string): Observable<{ msg: string }> {
     const headers = new HttpHeaders({ Authorization: `Bearer ${token}` });
-    return this.http.delete<{ msg: string }>(`${this.baseUrl}/cart/remove/${articleId}`, { headers });
+    return this.http.delete<{ msg: string }>(`${this.backendUrl}/cart/remove/${articleId}`, { headers });
   }
 }

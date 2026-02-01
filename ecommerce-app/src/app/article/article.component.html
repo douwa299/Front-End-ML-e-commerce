@@ -1,81 +1,38 @@
-<section  class="first-section">
+<section class="first-section" *ngIf="article">
   <div class="article-item">
+    <div class="img-article">
+      <img [src]="'http://127.0.0.1:8000' + article.image_path" [alt]="article.prod_name">
+    </div>
 
-          <div class="img-article">
-            <img src="images/article1.jpg" alt="">
-          </div>
-
-          <div class="detail-article">
-              <div class="article-info">
-                   <div>
-                      <p class="titre">Jerry jogger bottoms</p>
-                      <p class="price"> 59,00 €</p>
-                       <hr>
-                   </div>
-                   <div class="info2">
-                      <p class="color">Color : Black</p>
-                      <p class="color">Category : Tops</p>
-                      <p class="color">Product group : Garment Upper body</p>
-
-                   </div>
-
-              </div>
-               <button class="sbmt">Ajouter au panier</button>
-          </div>
+    <div class="detail-article">
+      <div class="article-info">
+        <div>
+          <p class="titre">{{ article.prod_name }}</p>
+          <p class="price">{{ article.price | number:'1.2-2' }} €</p>
+          <hr>
+        </div>
+        <div class="info2">
+          <p class="color">Color: {{ article.colour_group_name }}</p>
+          <p class="color">Category: {{ article.product_type_name }}</p>
+          <p class="color">Product group: {{ article.product_group_name }}</p>
+        </div>
+      </div>
+      <button class="sbmt" (click)="addToCart(article.article_id)">Ajouter au panier</button>
+    </div>
   </div>
-
 </section>
 
+<section class="Second-section" *ngIf="recommendations.length > 0">
+  <h1>Similar Products</h1>
+  <div class="similar-articles">
+    <div class="prod" *ngFor="let rec of recommendations" (click)="goToArticle(rec.article_id)">
+  <img [src]="'http://127.0.0.1:8000' + rec.image_path" [alt]="rec.prod_name">
+  <div>
+    <p class="prod-name">{{ rec.prod_name }}</p>
+    <p class="price-tag">{{ rec.price | number:'1.2-2' }} €</p>
+  </div>
+</div>
 
-<section  class="Second-section">
-          <h1>Similar Products</h1>
-          <div class="similar-articles">
-                <div class="prod">
-                  <img src="images/article1.jpg" alt="">
-                  <div>
-                       <p class="prod-name">Tanktop body black </p>
-                        <p class="price-tag">59,00 €</p>
-                  </div>
-
-                </div>
-                <div class="prod">
-                  <img src="images/article1.jpg" alt="">
-                  <div>
-                       <p class="prod-name">Tanktop body black </p>
-                        <p class="price-tag">59,00 €</p>
-                  </div>
-
-                </div><div class="prod">
-                  <img src="images/article1.jpg" alt="">
-                  <div>
-                       <p class="prod-name">Tanktop body black </p>
-                        <p class="price-tag">59,00 €</p>
-                  </div>
-
-                </div><div class="prod">
-                  <img src="images/article1.jpg" alt="">
-                  <div>
-                       <p class="prod-name">Tanktop body black </p>
-                        <p class="price-tag">59,00 €</p>
-                  </div>
-
-                </div>
-                <div class="prod">
-                  <img src="images/article1.jpg" alt="">
-                  <div>
-                       <p class="prod-name">Tanktop body black </p>
-                        <p class="price-tag">59,00 €</p>
-                  </div>
-
-                </div>
-                <div class="prod">
-                  <img src="images/article1.jpg" alt="">
-                  <div>
-                       <p class="prod-name">Tanktop body black </p>
-                        <p class="price-tag">59,00 €</p>
-                  </div>
-
-                </div>
-          </div>
-
+  </div>
 </section>
+

@@ -13,7 +13,7 @@ const routes: Routes = [
   { path: 'products', component: BoutiqueComponent },
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
-  { path: 'article', component: ArticleComponent },
+  { path: 'article/:id', component: ArticleComponent },
   { path: 'panier', component: PanierComponent },
     { path: '**', redirectTo: '' }
 

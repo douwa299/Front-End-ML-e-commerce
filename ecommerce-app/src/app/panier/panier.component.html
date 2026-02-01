@@ -1,53 +1,28 @@
-<section class="cart-section">
+<section class="cart-section" *ngIf="cart.length > 0; else emptyCart">
   <div class="cart-container">
     <h1 class="cart-title">Votre Panier</h1>
 
     <!-- Cart Items -->
     <div class="cart-items-container">
-      <!-- Cart Item 1 -->
-      <div class="cart-item">
+      <div class="cart-item" *ngFor="let item of cart">
         <div class="cart-item-image">
-          <img src="images/article1.jpg" alt="Jerry jogger bottoms">
+          <img [src]="'http://127.0.0.1:8000' + item.image_path" [alt]="item.prod_name">
         </div>
 
         <div class="cart-item-details">
           <div class="cart-item-info">
-            <h2 class="cart-item-name">Jerry jogger bottoms</h2>
-            <p class="cart-item-price">59,00 €</p>
+            <h2 class="cart-item-name">{{ item.prod_name }}</h2>
+            <p class="cart-item-price">{{ item.price | number:'1.2-2' }} €</p>
             <hr class="cart-divider">
             <div class="cart-item-specs">
-              <p class="cart-spec">Color : Black</p>
-              <p class="cart-spec">Category : Tops</p>
-              <p class="cart-spec">Product group : Garment Upper body</p>
+              <p class="cart-spec">Color : {{ item.colour_group_name }}</p>
+              <p class="cart-spec">Category : {{ item.product_type_name }}</p>
+              <p class="cart-spec">Product group : {{ item.product_group_name }}</p>
             </div>
           </div>
 
           <div class="cart-item-actions">
-            <button class="remove-btn">Supprimer</button>
-          </div>
-        </div>
-      </div>
-
-      <!-- Cart Item 2 -->
-      <div class="cart-item">
-        <div class="cart-item-image">
-          <img src="images/article1.jpg" alt="Tanktop body black">
-        </div>
-
-        <div class="cart-item-details">
-          <div class="cart-item-info">
-            <h2 class="cart-item-name">Tanktop body black</h2>
-            <p class="cart-item-price">59,00 €</p>
-            <hr class="cart-divider">
-            <div class="cart-item-specs">
-              <p class="cart-spec">Color : Black</p>
-              <p class="cart-spec">Category : Tops</p>
-              <p class="cart-spec">Product group : Garment Upper body</p>
-            </div>
-          </div>
-
-          <div class="cart-item-actions">
-            <button class="remove-btn">Supprimer</button>
+            <button class="remove-btn" (click)="removeItem(item.article_id)">Supprimer</button>
           </div>
         </div>
       </div>
@@ -58,7 +33,7 @@
       <div class="summary-details">
         <div class="summary-row">
           <span class="summary-label">Sous-total</span>
-          <span class="summary-value">118,00 €</span>
+          <span class="summary-value">{{ subtotal | number:'1.2-2' }} €</span>
         </div>
         <div class="summary-row">
           <span class="summary-label">Livraison</span>
@@ -67,13 +42,17 @@
         <hr class="summary-divider">
         <div class="summary-row total">
           <span class="summary-label">Total</span>
-          <span class="summary-value">118,00 €</span>
+          <span class="summary-value">{{ total | number:'1.2-2' }} €</span>
         </div>
       </div>
 
-      <button class="checkout-btn">Passer la commande</button>
+      <button class="checkout-btn" (click)="goToBoutique()">Passer la commande</button>
     </div>
-
-
   </div>
 </section>
+
+<ng-template #emptyCart>
+  <div class="empty-cart-simple">
+    <p>Votre panier est vide </p>
+  </div>
+</ng-template>
