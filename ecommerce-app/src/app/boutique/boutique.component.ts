@@ -49,7 +49,7 @@ export class BoutiqueComponent implements OnInit {
         this.products = items.map((item) => ({
           id: item.article_id,
           name: item.prod_name,
-          price: item.price,
+          price: item.price * 1000, //here
           image: this.api.buildImageUrl(item.image_path),
           category: item.product_group_name
         }));

@@ -27,9 +27,7 @@
       <div class="product-card" *ngFor="let product of filteredProducts" [routerLink]="['/article', product.id]" (click)="selectProduct(product)">
         <div class="product-image">
           <img [src]="product.image" [alt]="product.name" />
-          <div class="overlay">
-            <button class="add-btn" (click)="$event.stopPropagation()">Ajouter au panier</button>
-          </div>
+          
         </div>
         <div class="product-info">
           <h3>{{ product.name }}</h3>

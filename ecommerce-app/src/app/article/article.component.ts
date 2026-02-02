@@ -64,7 +64,10 @@ export class ArticleComponent implements OnInit {
 
   fetchArticle(id: string) {
     this.http.get<Article>(`${this.backendUrl}/article/${id}`).subscribe({
-      next: (res) => { this.article = res; this.loading = false; },
+      next: (res) => { 
+        this.article = { ...res, price: res.price * 1000 }; //here 
+        this.loading = false; 
+      },
       error: (err) => { this.error = 'Failed to load article'; this.loading = false; }
     });
   }
@@ -73,7 +76,9 @@ export class ArticleComponent implements OnInit {
     this.http.get<{ source_item: number; recommendations: Article[] }>(
       `${this.backendUrl}/recommend/${id}?top_k=9`
     ).subscribe({
-      next: (res) => { this.recommendations = res.recommendations; },
+      next: (res) => { 
+        this.recommendations = res.recommendations.map(r => ({ ...r, price: r.price * 1000 })); //here
+      },
       error: (err) => console.error('Failed to load recommendations', err)
     });
   }
