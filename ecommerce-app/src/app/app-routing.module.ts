@@ -15,7 +15,7 @@ const routes: Routes = [
   { path: 'register', component: RegisterComponent },
   { path: 'article/:id', component: ArticleComponent },
   { path: 'panier', component: PanierComponent },
-    { path: '**', redirectTo: '' }
+  { path: '**', redirectTo: '' }
 
 
 ];

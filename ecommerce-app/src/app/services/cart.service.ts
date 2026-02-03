@@ -22,22 +22,17 @@ export class CartService {
 
   private getAuthHeaders() {
     const token = localStorage.getItem('token') || '';
-    console.log(token,new HttpHeaders({
-      'Authorization': `Bearer ${token}`
-    }));
+   
     return new HttpHeaders({
       'Authorization': `Bearer ${token}`
     });
   }
 
   getCart(): Observable<CartItem[]> {
-        console.log(this.http.get<CartItem[]>(`${this.backendUrl}/cart`, { headers: this.getAuthHeaders() }));
-
     return this.http.get<CartItem[]>(`${this.backendUrl}/cart`, { headers: this.getAuthHeaders() });
   }
 
   addToCart(article_id: number): Observable<any> {
-    console.log(this.http.post(`${this.backendUrl}/cart/add/${article_id}`, {}, { headers: this.getAuthHeaders() }));
     return this.http.post(`${this.backendUrl}/cart/add/${article_id}`, {}, { headers: this.getAuthHeaders() });
   }
 

@@ -1,14 +1,13 @@
 @import url('https://fonts.googleapis.com/css2?family=Amarante&family=Birthstone&family=Boldonse&family=Butterfly+Kids&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&family=Courgette&family=Lato:ital@0;1&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Mozilla+Headline:wght@200..700&family=Noto+Sans+Display:ital,wght@0,100..900;1,100..900&family=Nunito+Sans:ital,opsz,wght@0,6..12,200..1000;1,6..12,200..1000&family=Open+Sans:ital,wght@0,300..800;1,300..800&family=Poiret+One&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Press+Start+2P&family=Quintessential&family=Roboto+Condensed:ital,wght@0,100..900;1,100..900&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&family=Ruge+Boogie&family=Sacramento&family=Sour+Gummy:ital,wght@0,100..900;1,100..900&family=Sumana:wght@400;700&family=Vend+Sans:ital,wght@0,300..700;1,300..700&display=swap');
 
 .first-section{
-  display: block;
-  margin: auto;
+  margin-left: 9vw;
   height: 500px;
-  width: 80vw;
+  width: 60vw;
   margin-top: 40px;
 }
 .Second-section{
-   display: block;
+  display: block;
   margin: auto;
   width: 80vw;
   margin-top: 40px;
@@ -17,13 +16,14 @@
 }
 
 .article-item{
-  height: 500px;
+  height: 600px;
   display: flex;
+  width: 1200px;
 }
 
 .img-article{
   position: relative;
-  width: 50%;
+  width: 40%;
 }
 .img-article img {
   width: 100%;
@@ -58,12 +58,15 @@
   justify-content: space-evenly;
   flex-direction: column;
   font-family: "Poiret One", sans-serif;
-
+  padding-left: 30px;
+  width: fit-content;
+  /* background-color: beige; */
 }
 
 .detail-article p{
   height: 60px;
   margin-left: 30px;
+  width: fit-content;
 }
 
 
@@ -128,8 +131,8 @@
   position: relative;
   cursor: pointer;
   transition: all 0.3s ease;
-  height: 300px;
-  width: 300px;
+  height: 500px;
+  width: 350px;
   margin-bottom: 80px;
 }
 
@@ -152,7 +155,7 @@
 }
 
 .prod img {
-  height: 250px;
+  height: 90%;
   width: 300px;
   outline: 2px solid rgba(0, 0, 0, 0.08);
   transition: all 0.3s ease;
@@ -166,7 +169,7 @@
 
 .prod div {
   position: relative;
-  height: 50px;
+  height: 10%;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -196,7 +199,7 @@
 }
 .similar-articles{
   position: relative;
-  margin-top: 50px;
+  margin-top: 80px;
   display: flex;
   justify-content: space-around;
   flex-wrap: wrap;
@@ -205,6 +208,8 @@
 .Second-section h1{
   padding-bottom: 30px;
   border-bottom: 2px solid rgba(0, 0, 0, 0.08);
+  margin-top: 200px;
+
 }
 
 
