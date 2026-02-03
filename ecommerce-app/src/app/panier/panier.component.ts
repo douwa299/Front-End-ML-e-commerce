@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { CommonModule } from '@angular/common'; // ✅ needed for pipes
+import { CommonModule } from '@angular/common';
 import { CartService } from '../services/cart.service';
 import { Router } from '@angular/router';
 
@@ -8,7 +8,7 @@ import { Router } from '@angular/router';
   templateUrl: './panier.component.html',
   styleUrls: ['./panier.component.css'],
   standalone: true,
-  imports: [CommonModule] // ✅ <-- import CommonModule for number pipe
+  imports: [CommonModule]
 })
 export class PanierComponent implements OnInit {
   cart: any[] = [];
@@ -30,7 +30,7 @@ export class PanierComponent implements OnInit {
     this.loading = true;
     this.cartService.getCart().subscribe({
       next: (items) => {
-        this.cart = items.map(item => ({ ...item, price: item.price * 1000})); //here
+        this.cart = items.map(item => ({ ...item, price: item.price * 1000}));
         this.loading = false;
       },
       error: (err) => {
@@ -52,6 +52,6 @@ export class PanierComponent implements OnInit {
   }
 
   get total(): number {
-    return this.subtotal; // free delivery
+    return this.subtotal; 
   }
 }
