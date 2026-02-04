@@ -2,7 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ActivatedRoute, Router } from '@angular/router';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
-import { CartService } from '../services/cart.service'; 
+import { CartService } from '../services/cart.service';
+import { environment } from '../../environments/environment.development';
 
 interface Article {
   article_id: number;
@@ -29,7 +30,7 @@ export class ArticleComponent implements OnInit {
   loading: boolean = true;
   error: string | null = null;
 
-  backendUrl = 'http://127.0.0.1:8000';
+  backendUrl = environment.apiUrl ;
 
   constructor(
     private route: ActivatedRoute,

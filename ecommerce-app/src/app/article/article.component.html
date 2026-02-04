@@ -1,7 +1,8 @@
 <section class="first-section" *ngIf="article">
   <div class="article-item">
     <div class="img-article">
-      <img [src]="'http://127.0.0.1:8000' + article.image_path" [alt]="article.prod_name">
+      <img [src]=" backendUrl + (article.image_path.startsWith('/') ? '' : '/') + article.image_path"
+     [alt]="article.prod_name">
     </div>
 
     <div class="detail-article">
@@ -26,7 +27,7 @@
   <h1>Similar Products</h1>
   <div class="similar-articles">
     <div class="prod" *ngFor="let rec of recommendations" (click)="goToArticle(rec.article_id)">
-  <img [src]="'http://127.0.0.1:8000' + rec.image_path" [alt]="rec.prod_name">
+  <img [src]=" backendUrl + (rec.image_path.startsWith('/') ? '' : '/') + rec.image_path" [alt]="rec.prod_name">
   <div>
     <p class="prod-name">{{ rec.prod_name }}</p>
     <p class="price-tag">{{ rec.price | number:'1.2-2' }} €</p>
