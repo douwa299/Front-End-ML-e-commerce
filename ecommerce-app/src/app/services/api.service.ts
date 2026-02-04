@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { environment } from '../../environments/environment.development';
 
 export interface BoutiqueItem {
   article_id: number;
@@ -32,7 +33,7 @@ export interface RegisterPayload {
 })
 export class ApiService {
   readonly baseUrl = '/api';
-  readonly backendUrl = 'http://127.0.0.1:8000';
+  readonly backendUrl = environment.apiUrl;
 
   constructor(private http: HttpClient) {}
 

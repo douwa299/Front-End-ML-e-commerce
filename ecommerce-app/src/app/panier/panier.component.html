@@ -6,7 +6,7 @@
     <div class="cart-items-container">
       <div class="cart-item" *ngFor="let item of cart">
         <div class="cart-item-image">
-          <img [src]="'http://127.0.0.1:8000' + item.image_path" [alt]="item.prod_name">
+          <img [src]="backendUrl + item.image_path" [alt]="item.prod_name">
         </div>
 
         <div class="cart-item-details">

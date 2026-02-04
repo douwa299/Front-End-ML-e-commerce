@@ -1,7 +1,8 @@
-import { Component, OnInit } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { CartService } from '../services/cart.service';
+import { Component, OnInit, Inject, PLATFORM_ID } from '@angular/core'; // <--- 1. Add Imports
+import { CommonModule, isPlatformBrowser } from '@angular/common';     // <--- 2. Add isPlatformBrowser
 import { Router } from '@angular/router';
+import { CartService } from '../services/cart.service';
+import { environment } from '../../environments/environment';
 
 @Component({
   selector: 'app-panier',
@@ -14,14 +15,24 @@ export class PanierComponent implements OnInit {
   cart: any[] = [];
   loading = true;
   error: string | null = null;
+  backendUrl = environment.apiUrl;
 
-  constructor(private cartService: CartService,
-    private router: Router
+  constructor(
+    private cartService: CartService,
+    private router: Router,
+    @Inject(PLATFORM_ID) private platformId: Object // <--- 3. Inject Platform ID
   ) {}
 
   ngOnInit(): void {
-    this.loadCart();
+    // <--- 4. WRAP THIS CALL. Only load cart if we are in the Browser.
+    if (isPlatformBrowser(this.platformId)) {
+      this.loadCart();
+    } else {
+      // If on server, stop loading immediately
+      this.loading = false;
+    }
   }
+
   goToBoutique() {
     this.router.navigate(['/boutique']);
   }
@@ -52,6 +63,6 @@ export class PanierComponent implements OnInit {
   }
 
   get total(): number {
-    return this.subtotal; 
+    return this.subtotal;
   }
 }
