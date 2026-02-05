@@ -41,7 +41,7 @@ export class PanierComponent implements OnInit {
     this.loading = true;
     this.cartService.getCart().subscribe({
       next: (items) => {
-        this.cart = items.map(item => ({ ...item, price: item.price * 1000}));
+        this.cart = items.map(item => ({ ...item, price: item.price * 10000 }));
         this.loading = false;
       },
       error: (err) => {

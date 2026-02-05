@@ -5,10 +5,10 @@
       <h1>BOUTIQUE</h1>
       <div class="sort-controls">
         <label for="category">Filtrer par catégorie</label>
-        <select id="category" [(ngModel)]="selectedCategory" (change)="onCategoryChange()" class="sort-select">
-          <option value="all">Toutes les catégories</option>
-          <option *ngFor="let cat of categories" [value]="cat">{{ cat }}</option>
-        </select>
+<select [(ngModel)]="selectedCategory" (change)="fetchProducts()">
+  <option value="all">All Departments</option>
+  <option *ngFor="let cat of categories" [value]="cat">{{cat}}</option>
+</select>
       </div>
     </div>
   </div>
@@ -27,12 +27,12 @@
       <div class="product-card" *ngFor="let product of filteredProducts" [routerLink]="['/article', product.id]" (click)="selectProduct(product)">
         <div class="product-image">
           <img [src]="product.image" [alt]="product.name" />
-          
+
         </div>
         <div class="product-info">
           <h3>{{ product.name }}</h3>
           <p class="category">{{ product.category }}</p>
-          <p class="price">{{ product.price | currency:'EUR':'symbol':'1.2-2' }}</p>
+            <p class="cart-item-price">{{ product.price | number:'1.2-2' }} MAD</p>
         </div>
       </div>
     </div>

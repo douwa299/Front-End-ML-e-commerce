@@ -41,27 +41,36 @@ export class BoutiqueComponent implements OnInit {
     });
   }
 
-  fetchProducts() {
-    this.isLoading = true;
-    this.errorMessage = '';
-    this.api.getBoutique({ limit: 100 }).subscribe({
-      next: (items: BoutiqueItem[]) => {
-        this.products = items.map((item) => ({
-          id: item.article_id,
-          name: item.prod_name,
-          price: item.price * 1000, //here
-          image: this.api.buildImageUrl(item.image_path),
-          category: item.product_group_name
-        }));
-        this.filterByCategory();
-        this.isLoading = false;
-      },
-      error: () => {
-        this.isLoading = false;
-        this.errorMessage = 'Impossible de charger les produits. Vérifiez que le backend est lancé.';
-      }
-    });
+fetchProducts() {
+  this.isLoading = true;
+
+  // 1. Prepare query params (similar to your HTML fetch)
+  const params: any = { limit: 100 };
+  if (this.selectedCategory !== 'all' && this.selectedCategory !== 'All') {
+    params.product_group = this.selectedCategory;
   }
+
+  // 2. Pass these params to your API service
+  this.api.getBoutique(params).subscribe({
+    next: (items: BoutiqueItem[]) => {
+      this.products = items.map((item) => ({
+        id: item.article_id,
+        name: item.prod_name,
+        price: item.price * 10000,
+        image: this.api.buildImageUrl(item.image_path),
+        category: item.product_group_name
+      }));
+
+      // Now filteredProducts is just the full result from the API
+      this.filteredProducts = [...this.products];
+      this.isLoading = false;
+    },
+    error: () => {
+      this.isLoading = false;
+      this.errorMessage = 'Erreur de chargement.';
+    }
+  });
+}
 
   filterByCategory() {
     if (this.selectedCategory === 'all') {
