@@ -9,7 +9,7 @@
       <div class="article-info">
         <div>
           <p class="titre">{{ article.prod_name }}</p>
-          <p class="price">{{ article.price | number:'1.2-2' }} €</p>
+          <p class="price">{{ article.price | number:'1.2-2' }} MAD</p>
           <hr>
         </div>
         <div class="info2">
@@ -30,7 +30,7 @@
   <img [src]=" backendUrl + (rec.image_path.startsWith('/') ? '' : '/') + rec.image_path" [alt]="rec.prod_name">
   <div>
     <p class="prod-name">{{ rec.prod_name }}</p>
-    <p class="price-tag">{{ rec.price | number:'1.2-2' }} €</p>
+    <p class="price-tag">{{ rec.price | number:'1.2-2' }} MAD</p>
   </div>
 </div>
 

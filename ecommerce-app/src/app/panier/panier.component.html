@@ -12,7 +12,7 @@
         <div class="cart-item-details">
           <div class="cart-item-info">
             <h2 class="cart-item-name">{{ item.prod_name }}</h2>
-            <p class="cart-item-price">{{ item.price | number:'1.2-2' }} €</p>
+            <p class="cart-item-price">{{ item.price | number:'1.2-2' }} MAD</p>
             <hr class="cart-divider">
             <div class="cart-item-specs">
               <p class="cart-spec">Color : {{ item.colour_group_name }}</p>
@@ -33,7 +33,7 @@
       <div class="summary-details">
         <div class="summary-row">
           <span class="summary-label">Sous-total</span>
-          <span class="summary-value">{{ subtotal | number:'1.2-2' }} €</span>
+          <span class="summary-value">{{ subtotal | number:'1.2-2' }} MAD</span>
         </div>
         <div class="summary-row">
           <span class="summary-label">Livraison</span>
@@ -42,7 +42,7 @@
         <hr class="summary-divider">
         <div class="summary-row total">
           <span class="summary-label">Total</span>
-          <span class="summary-value">{{ total | number:'1.2-2' }} €</span>
+          <span class="summary-value">{{ total | number:'1.2-2' }} MAD</span>
         </div>
       </div>
 
