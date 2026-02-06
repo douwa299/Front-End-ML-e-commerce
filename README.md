@@ -8,8 +8,13 @@ Shop♡Ease is a modern Angular-based e-commerce platform developed by engineeri
 * **Hajar Slimani**
 * **Douaa Berrahmo** 
 * **Hachem Squalli ElHoussaini**
+ 
+---
 
-  
+
+https://github.com/user-attachments/assets/8a3aa2d5-1dfc-4a70-b3b7-7df1ffc10e7b
+
+
 ## 🚀 Features
 - **Dynamic Boutique:** Fetches products from a backend API with advanced filtering.
 - **Smart Recommendations:** Integrated ML model logic to suggest pieces based on style.
